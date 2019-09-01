@@ -1,0 +1,4 @@
+#Sun Sep 01 20:20:20 BRT 2019
+base.0=/home/mergulhao/AndroidStudioProjects/SuperMergAnimeRoom/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
