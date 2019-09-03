@@ -93,9 +93,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/animeRecyclerView"
-        android:layout_width="328dp"
-        android:layout_height="327dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="335dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
