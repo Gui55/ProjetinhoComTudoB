@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="80dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -19,31 +19,33 @@
             <TextView
                 android:id="@+id/recycleName"
                 android:layout_width="307dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="13dp"
                 android:text="Nome" />
 
             <TextView
                 android:id="@+id/recycleAno"
+                android:background="#f2d7f2"
                 android:layout_width="45dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="13dp"
                 android:layout_below="@id/recycleName"
                 android:text="Ano" />
 
             <TextView
                 android:id="@+id/recycleGenero"
+                android:background="#cebace"
                 android:layout_width="262dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="13dp"
+                android:layout_height="20dp"
                 android:layout_below="@id/recycleName"
                 android:layout_toRightOf="@id/recycleAno"
                 android:text="Genero" />
 
             <TextView
                 android:id="@+id/recycleEstudio"
+                android:background="#e3d5e3"
                 android:layout_width="307dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="13dp"
                 android:layout_below="@id/recycleAno"
                 android:text="Estúdio" />

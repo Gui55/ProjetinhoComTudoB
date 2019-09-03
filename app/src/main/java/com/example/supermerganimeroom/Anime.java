@@ -1,10 +1,13 @@
 package com.example.supermerganimeroom;
 
-import android.graphics.Bitmap;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-import java.util.List;
-
+@Entity
 public class Anime {
+
+    @PrimaryKey(autoGenerate = true)
+    int id;
 
     String nome;
     String genero;
@@ -16,6 +19,14 @@ public class Anime {
         this.genero = genero;
         this.ano = ano;
         this.estudio = estudio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

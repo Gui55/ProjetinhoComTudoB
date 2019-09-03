@@ -3,8 +3,11 @@ package com.example.supermerganimeroom;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,30 +18,57 @@ public class AnimeListActivity extends AppCompatActivity {
     private List<Anime> animeList;
     private RecyclerView recyclerView;
 
+    private EditText nome, genero, ano, estudio;
+
+    public static AnimeDAO animeDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anime_list);
 
-        AnimeAdapter animeAdapter = new AnimeAdapter(animeLista(), this);
+
+        animeDAO = Room.databaseBuilder(this, AnimeDatabase.class, "animeDB")
+                .allowMainThreadQueries()
+                .build()
+                .animeDAO();
+
+        nome = (EditText)findViewById(R.id.enterAnimeNome);
+        genero = (EditText)findViewById(R.id.enterAnimeGenero);
+        ano = (EditText)findViewById(R.id.enterAnimeAno);
+        estudio = (EditText)findViewById(R.id.enterAnimeEstudio);
 
         recyclerView = (RecyclerView)findViewById(R.id.animeRecyclerView);
 
-        recyclerView.setAdapter(animeAdapter);
+        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), this));
 
 
     }
 
+    public void cadastrarAnime(View view) {
 
-    private List<Anime> animeLista(){
+        animeDAO.insert(new Anime(
 
-        List<Anime> animeList = new ArrayList<Anime>();
+                nome.getText().toString(),
+                genero.getText().toString(),
+                Integer.valueOf(ano.getText().toString()),
+                estudio.getText().toString()
 
-        animeList.add(new Anime("Karakai Jouzu no Takagi-san", "Slice of Life / Comedy", 2018, "Shin-Ei Animation"));
+        ));
 
-        animeList.add(new Anime("Re: Zero kara Hajimeru Isekai Seikatsu", "Isekai / Adventure", 2016, "White Fox"));
+        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), this));
 
-        return animeList;
+        recyclerView.getAdapter().notifyDataSetChanged();
+
+    }
+
+    public void limparListaAnime(View view) {
+
+        animeDAO.apagarTudo();
+
+        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), this));
+
+        recyclerView.getAdapter().notifyDataSetChanged();
 
     }
 }

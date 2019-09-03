@@ -23,7 +23,7 @@ public interface UsuarioDAO {
     List<Usuario> getUsuarios();
 
     //CONTE QUANTOS ELEMENTOS HÁ NA TABELA "usuario" ONDE "nomeDeUsuario" é igual "nUser"
-    // e senha é iagual "nPass"
+    // e senha é igual "nPass"
 
     @Query("SELECT COUNT(*) FROM usuario WHERE nomeDeUsuario LIKE :nUser AND" +
             " senha LIKE :nPass")
@@ -34,5 +34,4 @@ public interface UsuarioDAO {
 
     @Query("SELECT fotoPerfil FROM usuario WHERE nomeDeUsuario LIKE :nUser")
     public String getFoto(String nUser);
-
 }

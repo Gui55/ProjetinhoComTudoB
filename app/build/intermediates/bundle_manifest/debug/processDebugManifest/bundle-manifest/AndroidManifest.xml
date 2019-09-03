@@ -23,7 +23,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.supermerganimeroom.UsuariosListActivity" />
-        <activity android:name="com.example.supermerganimeroom.AnimeListActivity" />
+        <activity
+            android:name="com.example.supermerganimeroom.AnimeListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name="com.example.supermerganimeroom.DepoisDoLoginActivity" />
         <activity android:name="com.example.supermerganimeroom.CadastroActivity" />
         <activity

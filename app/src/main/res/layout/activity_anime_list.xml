@@ -4,12 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AnimeListActivity">
+    tools:context=".AnimeListActivity"
+    android:background="#f4b2f4">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Cadastrar animes"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002" />
+
+    <EditText
+        android:id="@+id/enterAnimeNome"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Nome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <EditText
+        android:id="@+id/enterAnimeAno"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Ano"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
+
+    <EditText
+        android:id="@+id/enterAnimeGenero"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Gênero"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176" />
+
+    <EditText
+        android:id="@+id/enterAnimeEstudio"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Estúdio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.234" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar anime"
+        android:onClick="cadastrarAnime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="limparListaAnime"
+        android:text="Limpar Lista"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.327" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/animeRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_width="328dp"
+        android:layout_height="327dp"
+        android:layout_marginLeft="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
