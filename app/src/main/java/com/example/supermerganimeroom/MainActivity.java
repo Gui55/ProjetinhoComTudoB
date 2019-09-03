@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .usuarioDAO();
 
 
+
         //Um escutador para cada vez que o usuário "clicar" em um editexts diferente (mudar o foco)
 
         logUsuario.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -101,25 +102,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
-
-        /*try{
-
-            int codeSeTem = CadastroActivity.usuarioDAO.existeUsuarioComEssaSenha(
-
-                    logUsuario.getText().toString(),
-                    logSenha.getText().toString()
-
-            );
-
-            Toast.makeText(this, codeSeTem, Toast.LENGTH_SHORT).show();
-
-        } catch(Exception e){
-
-            e.printStackTrace();
-
-            Toast.makeText(this, "Vazio", Toast.LENGTH_SHORT).show();
-
-        }*/
 
     }
 }

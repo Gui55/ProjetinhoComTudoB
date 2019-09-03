@@ -28,4 +28,16 @@ public class DepoisDoLoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, UsuariosListActivity.class));
 
     }
+
+    public void alterarDados(View view) {
+
+
+
+    }
+
+    public void irAosAnimes(View view) {
+
+        startActivity(new Intent(this, AnimeListActivity.class));
+
+    }
 }
