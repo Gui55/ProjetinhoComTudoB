@@ -3,9 +3,10 @@ package com.example.supermerganimeroom;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -20,10 +21,31 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageInicial;
 
+    public static SharedPreferences logadoOuNao, usuarioLogado;
+
+    public static SharedPreferences.Editor logiEditor, usuarioEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //Shared Preferences
+
+        logadoOuNao = getSharedPreferences("Logado", Context.MODE_PRIVATE);
+        logiEditor = logadoOuNao.edit();
+
+        usuarioLogado = getSharedPreferences("UserLogged", Context.MODE_PRIVATE);
+        usuarioEditor = usuarioLogado.edit();
+
+        if(logadoOuNao.contains("Logado") && logadoOuNao.getBoolean("Logado", true)){
+
+
+
+            startActivity(new Intent(this, DepoisDoLoginActivity.class));
+
+        }
 
 
         //Edit texts
@@ -96,8 +118,14 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
 
+            logiEditor.putBoolean("Logado", true);
+            logiEditor.apply();
+
+            usuarioEditor.putInt("UserLogged", usuarioDAO.idDoSelecionado(logUsuario.getText().toString()));
+            usuarioEditor.apply();
+
             Intent intent = new Intent(this, DepoisDoLoginActivity.class);
-            intent.putExtra("nameUser", logUsuario.getText().toString());
+            //intent.putExtra("nameUser", logUsuario.getText().toString());
 
             startActivity(intent);
 

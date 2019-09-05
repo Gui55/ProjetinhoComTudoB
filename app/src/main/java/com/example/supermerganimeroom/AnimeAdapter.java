@@ -15,10 +15,16 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
 
     private List<Anime> animeList;
     private Context context;
+    private final OnItemClickListener onItemClickListener;
 
-    public AnimeAdapter(List<Anime> animeList, Context context) {
+    public AnimeAdapter(List<Anime> animeList, Context context, OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
         this.animeList = animeList;
         this.context = context;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Anime anime);
     }
 
     @NonNull
@@ -36,6 +42,8 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
     public void onBindViewHolder(@NonNull AnimeViewHolder holder, int position) {
 
         Anime anime = animeList.get(position);
+
+        holder.bind(anime, onItemClickListener);
 
         holder.nome.setText(anime.getNome());
         holder.ano.setText(String.valueOf(anime.getAno()));
@@ -68,6 +76,19 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
             ano = (TextView)itemView.findViewById(R.id.recycleAno);
             genero = (TextView)itemView.findViewById(R.id.recycleGenero);
             estudio = (TextView)itemView.findViewById(R.id.recycleEstudio);
+
+        }
+
+        public void bind(final Anime anime, final OnItemClickListener onItemClickListener) {
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+
+                    onItemClickListener.onItemClick(anime);
+
+                }
+            });
 
         }
     }

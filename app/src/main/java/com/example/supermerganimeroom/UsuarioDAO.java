@@ -34,4 +34,10 @@ public interface UsuarioDAO {
 
     @Query("SELECT fotoPerfil FROM usuario WHERE nomeDeUsuario LIKE :nUser")
     public String getFoto(String nUser);
+
+    @Query("SELECT id FROM usuario WHERE nomeDeUsuario LIKE :nUser")
+    public int idDoSelecionado(String nUser);
+
+    @Query("SELECT nomeDeUsuario FROM usuario WHERE id LIKE :nId")
+    public String usernameDoSelecionado(int nId);
 }

@@ -250,4 +250,50 @@ public final class UsuarioDAO_Impl implements UsuarioDAO {
       _statement.release();
     }
   }
+
+  @Override
+  public int idDoSelecionado(String nUser) {
+    final String _sql = "SELECT id FROM usuario WHERE nomeDeUsuario LIKE ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (nUser == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, nUser);
+    }
+    final Cursor _cursor = __db.query(_statement);
+    try {
+      final int _result;
+      if(_cursor.moveToFirst()) {
+        _result = _cursor.getInt(0);
+      } else {
+        _result = 0;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public String usernameDoSelecionado(int nId) {
+    final String _sql = "SELECT nomeDeUsuario FROM usuario WHERE id LIKE ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, nId);
+    final Cursor _cursor = __db.query(_statement);
+    try {
+      final String _result;
+      if(_cursor.moveToFirst()) {
+        _result = _cursor.getString(0);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
 }

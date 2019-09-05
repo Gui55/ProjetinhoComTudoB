@@ -19,7 +19,9 @@ public class DepoisDoLoginActivity extends AppCompatActivity {
 
         boasVindas = (TextView)findViewById(R.id.boasVindas);
 
-        boasVindas.setText("Seja bem-vindo, "+getIntent().getExtras().get("nameUser").toString());
+        //boasVindas.setText("Seja bem-vindo, "+getIntent().getExtras().get("nameUser").toString());
+
+        boasVindas.setText("Seja bem-vindo, "+MainActivity.usuarioDAO.usernameDoSelecionado(MainActivity.usuarioLogado.getInt("UserLogged", 0)));
 
     }
 
@@ -38,6 +40,18 @@ public class DepoisDoLoginActivity extends AppCompatActivity {
     public void irAosAnimes(View view) {
 
         startActivity(new Intent(this, AnimeListActivity.class));
+
+    }
+
+    public void metodoLogout(View view) {
+
+        MainActivity.logiEditor.putBoolean("Logado", false);
+        MainActivity.logiEditor.apply();
+
+        MainActivity.usuarioEditor.putInt("UserLogged", 0);
+        MainActivity.usuarioEditor.apply();
+
+        startActivity(new Intent(this, MainActivity.class));
 
     }
 }

@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.app.SearchManager;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -63,7 +66,14 @@ public class AnimeListActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView)findViewById(R.id.animeRecyclerView);
 
-        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), this));
+        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), getApplicationContext(), new AnimeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Anime anime) {
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, anime.getNome());
+                startActivity(intent);
+            }
+        }));
 
     }
 
@@ -81,7 +91,15 @@ public class AnimeListActivity extends AppCompatActivity {
 
                 animeDAO.apagarTudo();
 
-                recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), getApplicationContext()));
+                recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), getApplicationContext(),
+                        new AnimeAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Anime anime) {
+                                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                                intent.putExtra(SearchManager.QUERY, anime.getNome());
+                                startActivity(intent);
+                            }
+                        }));
 
                 recyclerView.getAdapter().notifyDataSetChanged();
 
@@ -110,7 +128,15 @@ public class AnimeListActivity extends AppCompatActivity {
 
         ));
 
-        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), this));
+        recyclerView.setAdapter(new AnimeAdapter(animeDAO.getAnimes(), this,
+                new AnimeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Anime anime) {
+                        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        intent.putExtra(SearchManager.QUERY, anime.getNome());
+                        startActivity(intent);
+                    }
+                }));
 
         recyclerView.getAdapter().notifyDataSetChanged();
 
